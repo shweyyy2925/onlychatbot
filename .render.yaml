@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: laravel-chatbot
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    buildFilter:
+      paths:
+        - .
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://laravel-chatbot.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d1jsltmmcj7s73aag4hg-a
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: chatbot_db_6qrm      # Your actual DB name
+      - key: DB_USERNAME
+        value: chatbot_user    # Your actual DB user
+      - key: DB_PASSWORD
+        value: OAqQTPNVMEdTzSKY9MqPyGfOXDBhhDHN   # Actual DB password
