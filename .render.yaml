@@ -1,4 +1,4 @@
-services:
+services: 
   - type: web
     name: laravel-chatbot
     env: docker
@@ -14,7 +14,7 @@ services:
       - key: APP_KEY
         generateValue: true
       - key: APP_DEBUG
-        value: false
+        value: true
       - key: APP_URL
         value: https://laravel-chatbot.onrender.com
       - key: DB_CONNECTION
@@ -24,8 +24,13 @@ services:
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: chatbot_db_6qrm      # Your actual DB name
+        value: chatbot_db_6qrm
       - key: DB_USERNAME
-        value: chatbot_user    # Your actual DB user
+        value: chatbot_user
       - key: DB_PASSWORD
-        value: OAqQTPNVMEdTzSKY9MqPyGfOXDBhhDHN   # Actual DB password
+        value: OAqQTPNVMEdTzSKY9MqPyGfOXDBhhDHN
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: FILESYSTEM_DISK
+        value: local
+

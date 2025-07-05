@@ -11,8 +11,9 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor
 
+    
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
+RUN RUN docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
