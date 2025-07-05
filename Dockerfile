@@ -24,9 +24,6 @@ WORKDIR /var/www
 # Copy application files
 COPY . .
 
-# Generate session migration (important if SESSION_DRIVER=database)
-RUN php artisan session:table
-
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
