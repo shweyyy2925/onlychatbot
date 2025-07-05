@@ -8,10 +8,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip unzip \
     curl git npm \
-    libzip-dev \
+    libpq-dev \
     nginx \
-    supervisor \
-    libpq-dev  
+    supervisor
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl bcmath gd
@@ -22,18 +21,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy all files
+# Copy application files
 COPY . .
 
-# Install Laravel dependencies
+# Generate session migration (important if SESSION_DRIVER=database)
+RUN php artisan session:table
+
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Permissions
+# Fix permissions
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
 # Expose Laravel port
 EXPOSE 8000
 
-# Run Laravel server
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Run migrations and start Laravel server
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
