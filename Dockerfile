@@ -5,13 +5,13 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
     zip unzip \
     curl git npm \
     libzip-dev \
     nginx \
     supervisor
 
-    
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_pgsql mbstring zip exif pcntl bcmath gd
 
