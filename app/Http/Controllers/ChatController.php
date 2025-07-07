@@ -11,6 +11,11 @@ use App\Models\ChatHistory;
 
 class ChatController extends Controller
 {
+    public function index()
+    {
+        $chats = Chat::latest()->get();
+        return view('chatbot', compact('chats'));
+    }
     public function ask(Request $request)
 {
     $request->validate(['question' => 'required']);
@@ -62,10 +67,4 @@ class ChatController extends Controller
         ->header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
 }
 
-
-    public function index()
-    {
-        $chats = Chat::latest()->get();
-        return view('chatbot', compact('chats'));
-    }
 }
