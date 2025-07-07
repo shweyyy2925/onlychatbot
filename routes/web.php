@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', fn() => view('chat'));
-Route::post('/chat', [ChatController::class, 'ask']);
+//Route::post('/chat', [ChatController::class, 'ask']);
 Route::post('/admin/upload-pdf', [AdminPdfController::class, 'upload']);
 
 Route::get('/embed/{id}', function ($id) {
