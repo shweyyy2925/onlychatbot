@@ -4,8 +4,6 @@ return [
 
     'paths' => ['api/*', 'chat', 'embed/*'],
 
-    'allowed_methods' => ['*'],
-
     'allowed_origins' => ['https://troikatech.ai'],
 
     'allowed_origins_patterns' => [],

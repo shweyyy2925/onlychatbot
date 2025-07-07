@@ -16,5 +16,4 @@ class VerifyCsrfToken extends Middleware
     '/embed/*', // optional
 ];
 
-
 }
