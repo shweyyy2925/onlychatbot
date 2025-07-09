@@ -46,4 +46,3 @@ Route::post('/admin/upload-pdf', [AdminPdfController::class, 'upload']);
 Route::get('/embed/{id}', function ($id) {
     return view('embed', ['chatbot_id' => $id]);
 });
-Route::middleware(['web'])->post('/api/ask', [ChatController::class, 'askPublic']);

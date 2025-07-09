@@ -3,6 +3,7 @@
 <head>
     <title>AI Assistant Chat</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
@@ -59,11 +60,12 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
         : "https://laravel-chatbot-l1zw.onrender.com";
 
     try {
-        const res = await fetch(`${API_BASE}/api/ask`, {
+        const res = await fetch(`${API_BASE}/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                 'X-CSRF-TOKEN': csrf
             },
             body: JSON.stringify({ question })
         });
