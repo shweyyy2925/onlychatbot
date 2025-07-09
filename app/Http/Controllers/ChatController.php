@@ -60,7 +60,7 @@ class ChatController extends Controller
 {
     $request->validate(['question' => 'required']);
 
-    // Load PDF content once per request (no session)
+    // Load PDF content (without session)
     try {
         $parser = new \Smalot\PdfParser\Parser();
         $pdf = $parser->parseFile(storage_path('app/public/pdfs/chatbotpdf.pdf'));
@@ -83,10 +83,11 @@ class ChatController extends Controller
 
         $answer = $response['candidates'][0]['content']['parts'][0]['text'] ?? 'No answer.';
     } catch (\Exception $e) {
-        return response()->json(['answer' => 'API Error.'], 500);
+        return response()->json(['answer' => 'API Error'], 500);
     }
 
     return response()->json(['answer' => $answer]);
 }
+
 
 }
