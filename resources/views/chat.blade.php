@@ -60,12 +60,11 @@ document.getElementById('chat-form').addEventListener('submit', async function(e
         : "https://laravel-chatbot-l1zw.onrender.com";
 
     try {
-        const res = await fetch(`${API_BASE}/chat`, {
+        const res = await fetch(`${API_BASE}/api/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                 'X-CSRF-TOKEN': csrf
             },
             body: JSON.stringify({ question })
         });
